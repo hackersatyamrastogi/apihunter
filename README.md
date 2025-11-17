@@ -1,8 +1,25 @@
 # APIHunter
 
-**Full-stack API key validation tool for security researchers, penetration testers, and bug bounty hunters.**
+> **Professional API Key Validation & JWT Security Testing Tool**
+> Created by [Satyam Rastogi](https://satyamrastogi.com) - Director of Information Security & DevOps
 
-APIHunter is a self-hosted web application that safely validates API keys, tokens, and credentials discovered during security testing. It supports 100+ SaaS providers and performs only safe, non-destructive API calls.
+**Full-stack API key validation and JWT security testing tool for security researchers, penetration testers, and bug bounty hunters.**
+
+APIHunter is a self-hosted web application that safely validates API keys, tokens, and credentials discovered during security testing. It supports 100+ SaaS providers and performs only safe, non-destructive API calls. Now featuring a comprehensive JWT toolkit with decode, edit, and crack capabilities.
+
+[![GitHub Stars](https://img.shields.io/github/stars/hackersatyamrastogi/apihunter?style=social)](https://github.com/hackersatyamrastogi/apihunter)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Built with Next.js](https://img.shields.io/badge/Built%20with-Next.js-000000?logo=next.js)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+
+## 🎯 Use Cases
+
+- **Penetration Testing**: Validate discovered API keys during security assessments
+- **Bug Bounty Hunting**: Test credential validity in bug bounty programs
+- **Red Team Operations**: Verify compromised credentials and assess risk
+- **Security Research**: Analyze JWT token security and weak secrets
+- **DevSecOps**: Scan repositories for leaked credentials
+- **Security Training**: Learn about API security and JWT vulnerabilities
 
 ## Features
 

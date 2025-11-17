@@ -5,8 +5,54 @@ import { Card, CardBody, CardHeader } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 
 export default function HomePage() {
+  // Structured data for SEO
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'APIHunter',
+    applicationCategory: 'SecurityApplication',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    operatingSystem: 'Web',
+    description: 'Professional API key validation and JWT security testing tool for penetration testers, security researchers, and bug bounty hunters. Supports 100+ cloud providers including AWS, Azure, GCP, Cloudflare, GitHub, and Stripe.',
+    author: {
+      '@type': 'Person',
+      name: 'Satyam Rastogi',
+      url: 'https://satyamrastogi.com',
+      jobTitle: 'Director of Information Security & DevOps',
+      sameAs: [
+        'https://github.com/hackersatyamrastogi',
+        'https://linkedin.com/in/satyamrastogi',
+      ],
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '5.0',
+      ratingCount: '1',
+    },
+    featureList: [
+      'Validate 100+ API providers',
+      'JWT token decoder',
+      'JWT token editor and signer',
+      'JWT secret cracker',
+      'Custom HTTP request tester',
+      'Validation history tracking',
+      'Secret redaction and encryption',
+      'Docker deployment support',
+    ],
+    screenshot: 'https://apihunter.dev/screenshot.png',
+  };
+
   return (
     <div className="bg-background-primary min-h-screen">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Section */}
       <section className="bg-background-primary py-20 border-b border-terminal-green relative overflow-hidden">
         <div className="absolute inset-0 opacity-5">
