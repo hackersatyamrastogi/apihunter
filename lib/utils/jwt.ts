@@ -1,4 +1,5 @@
 import { JWTDecoded } from '../types';
+import crypto from 'crypto';
 
 /**
  * Decode a JWT token without verification
@@ -36,6 +37,99 @@ export function decodeJWT(token: string): JWTDecoded | null {
   } catch (error) {
     return null;
   }
+}
+
+/**
+ * Encode JWT parts into a token (without signing)
+ */
+export function encodeJWT(header: any, payload: any, signature: string = ''): string {
+  const headerB64 = Buffer.from(JSON.stringify(header))
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '');
+
+  const payloadB64 = Buffer.from(JSON.stringify(payload))
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '');
+
+  return `${headerB64}.${payloadB64}.${signature}`;
+}
+
+/**
+ * Sign JWT with HMAC
+ */
+export function signJWT(header: any, payload: any, secret: string, algorithm: string = 'HS256'): string {
+  const headerB64 = Buffer.from(JSON.stringify(header))
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '');
+
+  const payloadB64 = Buffer.from(JSON.stringify(payload))
+    .toString('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '');
+
+  const data = `${headerB64}.${payloadB64}`;
+
+  let hmacAlg = 'sha256';
+  if (algorithm === 'HS384') hmacAlg = 'sha384';
+  if (algorithm === 'HS512') hmacAlg = 'sha512';
+
+  const signature = crypto
+    .createHmac(hmacAlg, secret)
+    .update(data)
+    .digest('base64')
+    .replace(/\+/g, '-')
+    .replace(/\//g, '_')
+    .replace(/=/g, '');
+
+  return `${data}.${signature}`;
+}
+
+/**
+ * Attempt to crack JWT signature with common secrets
+ */
+export async function crackJWT(token: string, wordlist: string[]): Promise<string | null> {
+  const decoded = decodeJWT(token);
+  if (!decoded) return null;
+
+  const parts = token.split('.');
+  if (parts.length !== 3) return null;
+
+  const [headerB64, payloadB64, originalSig] = parts;
+  const data = `${headerB64}.${payloadB64}`;
+  const algorithm = decoded.header.alg as string;
+
+  // Only support HMAC algorithms for cracking
+  if (!algorithm.startsWith('HS')) {
+    return null;
+  }
+
+  let hmacAlg = 'sha256';
+  if (algorithm === 'HS384') hmacAlg = 'sha384';
+  if (algorithm === 'HS512') hmacAlg = 'sha512';
+
+  // Try each secret
+  for (const secret of wordlist) {
+    const signature = crypto
+      .createHmac(hmacAlg, secret)
+      .update(data)
+      .digest('base64')
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=/g, '');
+
+    if (signature === originalSig) {
+      return secret;
+    }
+  }
+
+  return null;
 }
 
 /**
