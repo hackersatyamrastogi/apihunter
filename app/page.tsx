@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { AlertCircle, CheckCircle, History, Package, Key, Zap } from 'lucide-react';
+import { AlertCircle, CheckCircle, History, Package } from 'lucide-react';
 import { Card, CardBody, CardHeader } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 
@@ -182,72 +182,6 @@ export default function HomePage() {
                     Explore all available API providers and their validation methods.
                   </p>
                   <div className="text-xs text-terminal-green opacity-60 font-mono">[action_browse]</div>
-                </CardBody>
-              </Card>
-            </Link>
-
-            {/* JWT Decoder Card */}
-            <Link href="/jwt">
-              <Card hoverable className="h-full group hover:shadow-lg hover:shadow-terminal-cyan/50 transition-all">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-terminal-cyan bg-opacity-10 rounded">
-                      <Key className="text-terminal-cyan" size={24} />
-                    </div>
-                    <h3 className="text-lg font-semibold text-terminal-cyan uppercase">
-                      JWT Decoder
-                    </h3>
-                  </div>
-                </CardHeader>
-                <CardBody>
-                  <p className="text-terminal-green text-sm mb-4">
-                    Decode and analyze JWT tokens to inspect claims and expiration.
-                  </p>
-                  <div className="text-xs text-terminal-cyan opacity-60 font-mono">[action_decode]</div>
-                </CardBody>
-              </Card>
-            </Link>
-
-            {/* Custom Test Card */}
-            <Link href="/custom-test">
-              <Card hoverable className="h-full group hover:shadow-lg hover:shadow-terminal-cyan/50 transition-all">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-terminal-yellow bg-opacity-10 rounded">
-                      <Zap className="text-terminal-yellow" size={24} />
-                    </div>
-                    <h3 className="text-lg font-semibold text-terminal-yellow uppercase">
-                      Custom Test
-                    </h3>
-                  </div>
-                </CardHeader>
-                <CardBody>
-                  <p className="text-terminal-green text-sm mb-4">
-                    Test custom HTTP endpoints with credential injection options.
-                  </p>
-                  <div className="text-xs text-terminal-yellow opacity-60 font-mono">[action_custom]</div>
-                </CardBody>
-              </Card>
-            </Link>
-
-            {/* Settings Card */}
-            <Link href="/settings">
-              <Card hoverable className="h-full group hover:shadow-lg hover:shadow-terminal-red/50 transition-all">
-                <CardHeader>
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-terminal-red bg-opacity-10 rounded">
-                      <AlertCircle className="text-terminal-red" size={24} />
-                    </div>
-                    <h3 className="text-lg font-semibold text-terminal-red uppercase">
-                      Settings
-                    </h3>
-                  </div>
-                </CardHeader>
-                <CardBody>
-                  <p className="text-terminal-green text-sm mb-4">
-                    Configure history storage, encryption, and security options.
-                  </p>
-                  <div className="text-xs text-terminal-red opacity-60 font-mono">[action_config]</div>
                 </CardBody>
               </Card>
             </Link>
