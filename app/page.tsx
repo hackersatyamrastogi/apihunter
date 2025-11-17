@@ -188,54 +188,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Features Section */}
-      <section className="bg-surface-secondary border-t border-terminal-green py-16">
-        <div className="container mx-auto px-4">
-          <div className="mb-8 flex items-center gap-3">
-            <span className="text-terminal-cyan">{'>'}</span>
-            <h2 className="text-2xl font-bold text-terminal-green uppercase tracking-wider">Features</h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-4 border-l-2 border-terminal-green">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-terminal-cyan text-sm">{'>'}</span>
-                <h3 className="font-semibold text-terminal-green uppercase tracking-wider">Multi-Provider</h3>
-              </div>
-              <p className="text-terminal-cyan text-sm">
-                Support for 50+ API providers across different categories
-              </p>
-            </div>
-            <div className="p-4 border-l-2 border-terminal-cyan">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-terminal-cyan text-sm">{'>'}</span>
-                <h3 className="font-semibold text-terminal-cyan uppercase tracking-wider">Risk Assessment</h3>
-              </div>
-              <p className="text-terminal-green text-sm">
-                Automatic evaluation of API key permissions and exposure level
-              </p>
-            </div>
-            <div className="p-4 border-l-2 border-terminal-yellow">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-terminal-cyan text-sm">{'>'}</span>
-                <h3 className="font-semibold text-terminal-yellow uppercase tracking-wider">History Storage</h3>
-              </div>
-              <p className="text-terminal-green text-sm">
-                Optional encrypted storage of validation results and metadata
-              </p>
-            </div>
-            <div className="p-4 border-l-2 border-terminal-green">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-terminal-cyan text-sm">{'>'}</span>
-                <h3 className="font-semibold text-terminal-green uppercase tracking-wider">JWT Analysis</h3>
-              </div>
-              <p className="text-terminal-cyan text-sm">
-                Decode and analyze JWT tokens with expiration checking
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
