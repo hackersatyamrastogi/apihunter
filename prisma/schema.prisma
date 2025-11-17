@@ -1,0 +1,46 @@
+// Prisma schema for APIHunter
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Provider {
+  id          String       @id @default(cuid())
+  name        String       @unique
+  displayName String
+  category    String
+  description String?
+  inputSchema String       // JSON as string for SQLite
+  enabled     Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+  validations Validation[]
+}
+
+model Validation {
+  id                String   @id @default(cuid())
+  providerId        String
+  provider          Provider @relation(fields: [providerId], references: [id])
+  status            String   // 'valid', 'invalid', 'unknown', 'error'
+  secretFingerprint String   // SHA-256 hash of the secret
+  metadata          String?  // JSON as string for SQLite
+  errorSummary      String?  // Redacted error message if validation failed
+  rawResponse       String?  // Redacted raw response snippet
+  httpStatus        Int?     // HTTP status code from validation request
+  requestDuration   Int?     // Duration in milliseconds
+  createdAt         DateTime @default(now())
+}
+
+model Settings {
+  id                 String   @id @default(cuid())
+  key                String   @unique
+  value              String
+  encrypted          Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+}

@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border-primary;
+  }
+
+  body {
+    @apply bg-background-primary text-text-primary font-mono;
+    background-image:
+      linear-gradient(rgba(13, 115, 119, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(13, 115, 119, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  h1 {
+    @apply text-3xl font-bold text-text-primary;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold text-text-primary;
+  }
+
+  h3 {
+    @apply text-xl font-semibold text-terminal-cyan;
+  }
+
+  h4 {
+    @apply text-lg font-medium text-terminal-cyan;
+  }
+
+  p {
+    @apply text-base text-text-secondary leading-relaxed;
+  }
+
+  a {
+    @apply text-terminal-cyan hover:text-accent-secondary transition-colors;
+  }
+
+  code {
+    @apply font-mono text-sm bg-surface-secondary px-2 py-1 rounded border border-border-primary text-terminal-cyan;
+  }
+
+  pre {
+    @apply font-mono text-sm bg-surface-secondary p-4 rounded border border-border-primary overflow-x-auto text-text-primary;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2 rounded font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-terminal-cyan uppercase tracking-wider text-sm;
+    border: 1px solid currentColor;
+  }
+
+  .btn-primary {
+    @apply btn bg-terminal-cyan text-white hover:bg-accent-secondary border-terminal-cyan;
+    box-shadow: 0 2px 4px rgba(13, 115, 119, 0.2);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 4px 8px rgba(13, 115, 119, 0.3);
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-terminal-cyan hover:bg-surface-tertiary border-border-secondary;
+  }
+
+  .btn-danger {
+    @apply btn bg-transparent text-terminal-red hover:bg-terminal-red hover:text-white border-terminal-red;
+  }
+
+  .input {
+    @apply w-full px-3 py-2 bg-white border border-border-primary rounded text-text-primary placeholder-text-muted focus:outline-none focus:border-terminal-cyan transition-all;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .input:focus {
+    box-shadow: 0 0 0 3px rgba(13, 115, 119, 0.1);
+  }
+
+  .card {
+    @apply bg-surface-primary border border-border-primary rounded-lg p-6 relative;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(13, 115, 119, 0.3), transparent);
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded text-xs font-bold uppercase tracking-wider border;
+  }
+
+  .badge-valid {
+    @apply badge bg-green-50 text-terminal-green border-terminal-green;
+  }
+
+  .badge-invalid {
+    @apply badge bg-red-50 text-terminal-red border-terminal-red;
+  }
+
+  .badge-unknown {
+    @apply badge bg-yellow-50 text-terminal-yellow border-terminal-yellow;
+  }
+
+  .badge-error {
+    @apply badge bg-red-50 text-terminal-red border-terminal-red;
+  }
+
+  .glow-green {
+    box-shadow: 0 2px 8px rgba(16, 185, 129, 0.15);
+  }
+
+  .glow-cyan {
+    box-shadow: 0 2px 8px rgba(13, 115, 119, 0.15);
+  }
+
+  .terminal-line {
+    @apply flex items-center gap-2 text-text-primary;
+  }
+
+  .terminal-line::before {
+    content: '>';
+    @apply text-terminal-cyan;
+  }
+
+  .sidebar-active {
+    @apply bg-terminal-cyan bg-opacity-10 border-l-2 border-terminal-cyan text-terminal-cyan;
+    box-shadow: 0 0 0 1px rgba(13, 115, 119, 0.05);
+  }
+
+  .scanline {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scanline::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(transparent, rgba(0, 255, 65, 0.5), transparent);
+    animation: scan 8s linear infinite;
+  }
+
+  @keyframes scan {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+
+  .flicker {
+    animation: flicker 0.15s infinite;
+  }
+
+  @keyframes flicker {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.95;
+    }
+  }
+}
+
+/* Custom scrollbar - professional style */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f3f5;
+  border: 1px solid #dee2e6;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0d7377;
+  border: 1px solid #f1f3f5;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #14919b;
+}
+
+/* Selection */
+::selection {
+  background: rgba(13, 115, 119, 0.2);
+  color: #212529;
+}

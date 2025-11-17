@@ -1,0 +1,261 @@
+import React from 'react';
+import Link from 'next/link';
+import { AlertCircle, CheckCircle, History, Package, Key, Zap } from 'lucide-react';
+import { Card, CardBody, CardHeader } from '@/components/ui/Card';
+import { Button } from '@/components/ui/Button';
+
+export default function HomePage() {
+  return (
+    <div className="bg-background-primary min-h-screen">
+      {/* Hero Section */}
+      <section className="bg-background-primary py-20 border-b border-terminal-green relative overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-terminal-green rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-terminal-cyan rounded-full blur-3xl"></div>
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-3xl mx-auto text-center">
+            <div className="mb-4 flex items-center justify-center gap-2">
+              <span className="text-terminal-cyan text-lg font-mono">{'>'}</span>
+              <span className="text-terminal-green text-sm uppercase tracking-wider">INITIALIZED</span>
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold text-terminal-green mb-4">
+              APIHunter
+            </h1>
+            <p className="text-xl text-terminal-cyan mb-2">Security Testing Terminal</p>
+            <p className="text-base text-terminal-green opacity-80 mb-8">
+              Full-stack API key validation tool for security researchers and penetration testers
+            </p>
+            <div className="flex gap-4 justify-center flex-wrap">
+              <Link href="/validate">
+                <Button size="lg" variant="primary">
+                  > SCAN KEYS
+                </Button>
+              </Link>
+              <Link href="/providers">
+                <Button size="lg" variant="secondary">
+                  > BROWSE PROVIDERS
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Disclaimer Section - Terminal Style */}
+      <section className="bg-background-primary border-b border-terminal-red py-8 relative">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto">
+            <div className="border-l-4 border-terminal-red pl-6">
+              <div className="flex gap-3 items-start">
+                <AlertCircle className="text-terminal-red flex-shrink-0 mt-1" size={24} />
+                <div className="flex-1">
+                  <h2 className="text-lg font-bold text-terminal-red uppercase tracking-wider mb-2">
+                    LEGAL NOTICE
+                  </h2>
+                  <p className="text-terminal-green text-sm leading-relaxed">
+                    APIHunter is designed for authorized security testing and penetration testing purposes only.
+                    Validating API keys without proper authorization is <span className="text-terminal-red font-bold">ILLEGAL</span> and <span className="text-terminal-red font-bold">UNETHICAL</span>.
+                    Always obtain written permission from the API provider or service owner before testing.
+                    The developers are not responsible for misuse of this tool. Use responsibly and legally.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Actions */}
+      <section className="py-16">
+        <div className="container mx-auto px-4">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="text-terminal-cyan text-lg">{'>'}</span>
+            <h2 className="text-3xl font-bold text-terminal-green uppercase tracking-wider">Quick Actions</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Validate API Key Card */}
+            <Link href="/validate">
+              <Card hoverable className="h-full group hover:shadow-lg hover:shadow-terminal-green/50 transition-all">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-terminal-green bg-opacity-10 rounded">
+                      <CheckCircle className="text-terminal-green" size={24} />
+                    </div>
+                    <h3 className="text-lg font-semibold text-terminal-green uppercase">
+                      Validate Key
+                    </h3>
+                  </div>
+                </CardHeader>
+                <CardBody>
+                  <p className="text-terminal-cyan text-sm mb-4">
+                    Test API keys against various providers to determine validity and security status.
+                  </p>
+                  <div className="text-xs text-terminal-green opacity-60 font-mono">[action_scan]</div>
+                </CardBody>
+              </Card>
+            </Link>
+
+            {/* View History Card */}
+            <Link href="/history">
+              <Card hoverable className="h-full group hover:shadow-lg hover:shadow-terminal-green/50 transition-all">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-terminal-green bg-opacity-10 rounded">
+                      <History className="text-terminal-green" size={24} />
+                    </div>
+                    <h3 className="text-lg font-semibold text-terminal-green uppercase">
+                      View History
+                    </h3>
+                  </div>
+                </CardHeader>
+                <CardBody>
+                  <p className="text-terminal-cyan text-sm mb-4">
+                    Browse past validations and review their results and metadata.
+                  </p>
+                  <div className="text-xs text-terminal-green opacity-60 font-mono">[action_history]</div>
+                </CardBody>
+              </Card>
+            </Link>
+
+            {/* Browse Providers Card */}
+            <Link href="/providers">
+              <Card hoverable className="h-full group hover:shadow-lg hover:shadow-terminal-green/50 transition-all">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-terminal-green bg-opacity-10 rounded">
+                      <Package className="text-terminal-green" size={24} />
+                    </div>
+                    <h3 className="text-lg font-semibold text-terminal-green uppercase">
+                      Providers
+                    </h3>
+                  </div>
+                </CardHeader>
+                <CardBody>
+                  <p className="text-terminal-cyan text-sm mb-4">
+                    Explore all available API providers and their validation methods.
+                  </p>
+                  <div className="text-xs text-terminal-green opacity-60 font-mono">[action_browse]</div>
+                </CardBody>
+              </Card>
+            </Link>
+
+            {/* JWT Decoder Card */}
+            <Link href="/jwt">
+              <Card hoverable className="h-full group hover:shadow-lg hover:shadow-terminal-cyan/50 transition-all">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-terminal-cyan bg-opacity-10 rounded">
+                      <Key className="text-terminal-cyan" size={24} />
+                    </div>
+                    <h3 className="text-lg font-semibold text-terminal-cyan uppercase">
+                      JWT Decoder
+                    </h3>
+                  </div>
+                </CardHeader>
+                <CardBody>
+                  <p className="text-terminal-green text-sm mb-4">
+                    Decode and analyze JWT tokens to inspect claims and expiration.
+                  </p>
+                  <div className="text-xs text-terminal-cyan opacity-60 font-mono">[action_decode]</div>
+                </CardBody>
+              </Card>
+            </Link>
+
+            {/* Custom Test Card */}
+            <Link href="/custom-test">
+              <Card hoverable className="h-full group hover:shadow-lg hover:shadow-terminal-cyan/50 transition-all">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-terminal-yellow bg-opacity-10 rounded">
+                      <Zap className="text-terminal-yellow" size={24} />
+                    </div>
+                    <h3 className="text-lg font-semibold text-terminal-yellow uppercase">
+                      Custom Test
+                    </h3>
+                  </div>
+                </CardHeader>
+                <CardBody>
+                  <p className="text-terminal-green text-sm mb-4">
+                    Test custom HTTP endpoints with credential injection options.
+                  </p>
+                  <div className="text-xs text-terminal-yellow opacity-60 font-mono">[action_custom]</div>
+                </CardBody>
+              </Card>
+            </Link>
+
+            {/* Settings Card */}
+            <Link href="/settings">
+              <Card hoverable className="h-full group hover:shadow-lg hover:shadow-terminal-red/50 transition-all">
+                <CardHeader>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-terminal-red bg-opacity-10 rounded">
+                      <AlertCircle className="text-terminal-red" size={24} />
+                    </div>
+                    <h3 className="text-lg font-semibold text-terminal-red uppercase">
+                      Settings
+                    </h3>
+                  </div>
+                </CardHeader>
+                <CardBody>
+                  <p className="text-terminal-green text-sm mb-4">
+                    Configure history storage, encryption, and security options.
+                  </p>
+                  <div className="text-xs text-terminal-red opacity-60 font-mono">[action_config]</div>
+                </CardBody>
+              </Card>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="bg-surface-secondary border-t border-terminal-green py-16">
+        <div className="container mx-auto px-4">
+          <div className="mb-8 flex items-center gap-3">
+            <span className="text-terminal-cyan">{'>'}</span>
+            <h2 className="text-2xl font-bold text-terminal-green uppercase tracking-wider">Features</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="p-4 border-l-2 border-terminal-green">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-terminal-cyan text-sm">{'>'}</span>
+                <h3 className="font-semibold text-terminal-green uppercase tracking-wider">Multi-Provider</h3>
+              </div>
+              <p className="text-terminal-cyan text-sm">
+                Support for 50+ API providers across different categories
+              </p>
+            </div>
+            <div className="p-4 border-l-2 border-terminal-cyan">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-terminal-cyan text-sm">{'>'}</span>
+                <h3 className="font-semibold text-terminal-cyan uppercase tracking-wider">Risk Assessment</h3>
+              </div>
+              <p className="text-terminal-green text-sm">
+                Automatic evaluation of API key permissions and exposure level
+              </p>
+            </div>
+            <div className="p-4 border-l-2 border-terminal-yellow">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-terminal-cyan text-sm">{'>'}</span>
+                <h3 className="font-semibold text-terminal-yellow uppercase tracking-wider">History Storage</h3>
+              </div>
+              <p className="text-terminal-green text-sm">
+                Optional encrypted storage of validation results and metadata
+              </p>
+            </div>
+            <div className="p-4 border-l-2 border-terminal-green">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-terminal-cyan text-sm">{'>'}</span>
+                <h3 className="font-semibold text-terminal-green uppercase tracking-wider">JWT Analysis</h3>
+              </div>
+              <p className="text-terminal-cyan text-sm">
+                Decode and analyze JWT tokens with expiration checking
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
