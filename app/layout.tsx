@@ -7,7 +7,7 @@ import { QueryProvider } from '@/components/providers/QueryProvider';
 const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://apihunter.dev'),
+  metadataBase: new URL('https://www.apihunter.app'),
   title: {
     default: 'APIHunter - API Key Validation & JWT Security Testing Tool by Satyam Rastogi',
     template: '%s | APIHunter - Security Testing Tool',
@@ -53,25 +53,16 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://apihunter.dev',
+    url: 'https://www.apihunter.app',
     title: 'APIHunter - Professional API Key Validation & JWT Security Testing',
     description: 'Validate API keys for 100+ providers, decode/crack JWT tokens, and perform comprehensive API security testing. Built by Satyam Rastogi for security researchers.',
     siteName: 'APIHunter',
-    images: [
-      {
-        url: '/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'APIHunter - API Security Testing Tool',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'APIHunter - API Key Validation & JWT Testing Tool',
     description: 'Professional security testing tool for API keys and JWT tokens. 100+ providers supported.',
     creator: '@satyamrastogi',
-    images: ['/og-image.png'],
   },
   robots: {
     index: true,
@@ -85,7 +76,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://apihunter.dev',
+    canonical: 'https://www.apihunter.app',
   },
   category: 'technology',
 };
