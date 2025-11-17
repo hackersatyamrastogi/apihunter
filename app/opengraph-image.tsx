@@ -17,69 +17,42 @@ export default async function Image() {
     (
       <div
         style={{
-          background: 'linear-gradient(135deg, #0a0e14 0%, #1a1f2e 100%)',
-          width: '100%',
           height: '100%',
+          width: '100%',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '60px',
+          backgroundColor: '#0a0e14',
+          backgroundImage: 'linear-gradient(to bottom right, #0a0e14, #1a1f2e)',
           fontFamily: 'monospace',
-          position: 'relative',
         }}
       >
-        {/* Terminal-style border */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '40px',
-            left: '40px',
-            right: '40px',
-            bottom: '40px',
-            border: '2px solid #00ff41',
-            borderRadius: '8px',
-            display: 'flex',
-          }}
-        />
-
-        {/* Grid background effect */}
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundImage: 'linear-gradient(#00ff4120 1px, transparent 1px), linear-gradient(90deg, #00ff4120 1px, transparent 1px)',
-            backgroundSize: '50px 50px',
-            opacity: 0.3,
-            display: 'flex',
-          }}
-        />
-
-        {/* Content */}
+        {/* Main content container */}
         <div
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            zIndex: 10,
+            border: '3px solid #00ff41',
+            borderRadius: '16px',
+            padding: '80px 120px',
+            margin: '60px',
           }}
         >
-          {/* Terminal prompt */}
+          {/* Status indicator */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              marginBottom: '20px',
+              marginBottom: '30px',
+              fontSize: '28px',
               color: '#00d4ff',
-              fontSize: '32px',
             }}
           >
-            <span style={{ marginRight: '15px' }}>{'>'}</span>
-            <span style={{ color: '#00ff41', fontSize: '24px', letterSpacing: '3px' }}>
+            <span style={{ marginRight: '12px' }}>{'>'}</span>
+            <span style={{ color: '#00ff41', letterSpacing: '4px', fontSize: '24px' }}>
               INITIALIZED
             </span>
           </div>
@@ -87,12 +60,11 @@ export default async function Image() {
           {/* Title */}
           <div
             style={{
-              fontSize: '100px',
-              fontWeight: 'bold',
+              fontSize: '110px',
+              fontWeight: 900,
               color: '#00ff41',
-              marginBottom: '20px',
-              textShadow: '0 0 20px rgba(0, 255, 65, 0.5)',
-              display: 'flex',
+              marginBottom: '30px',
+              letterSpacing: '-2px',
             }}
           >
             APIHunter
@@ -101,62 +73,69 @@ export default async function Image() {
           {/* Subtitle */}
           <div
             style={{
-              fontSize: '36px',
+              fontSize: '40px',
               color: '#00d4ff',
-              marginBottom: '15px',
-              display: 'flex',
+              marginBottom: '20px',
+              fontWeight: 600,
             }}
           >
             Security Testing Terminal
           </div>
 
-          {/* Description */}
+          {/* Feature list */}
           <div
             style={{
-              fontSize: '24px',
+              fontSize: '26px',
               color: '#00ff41',
-              opacity: 0.8,
               textAlign: 'center',
-              maxWidth: '900px',
-              display: 'flex',
+              opacity: 0.9,
+              fontWeight: 500,
             }}
           >
             API Key Validation • JWT Security Testing • 100+ Providers
           </div>
+        </div>
 
-          {/* Footer prompt */}
+        {/* Footer */}
+        <div
+          style={{
+            display: 'flex',
+            position: 'absolute',
+            bottom: '40px',
+            left: '60px',
+            right: '60px',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
+        >
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              marginTop: '40px',
+              fontSize: '22px',
               color: '#00d4ff',
-              fontSize: '20px',
             }}
           >
             <span style={{ marginRight: '10px' }}>{'>'}</span>
             <span style={{ color: '#888' }}>www.apihunter.app</span>
           </div>
-        </div>
 
-        {/* Bottom badge */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '60px',
-            right: '60px',
-            display: 'flex',
-            alignItems: 'center',
-            padding: '12px 24px',
-            background: 'rgba(0, 255, 65, 0.1)',
-            border: '1px solid #00ff41',
-            borderRadius: '6px',
-            color: '#00ff41',
-            fontSize: '18px',
-          }}
-        >
-          <span style={{ marginRight: '8px' }}>{'>'}</span>
-          <span>by Satyam Rastogi</span>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: '14px 28px',
+              backgroundColor: 'rgba(0, 255, 65, 0.15)',
+              border: '2px solid #00ff41',
+              borderRadius: '8px',
+              color: '#00ff41',
+              fontSize: '20px',
+              fontWeight: 600,
+            }}
+          >
+            <span style={{ marginRight: '10px' }}>{'>'}</span>
+            <span>by Satyam Rastogi</span>
+          </div>
         </div>
       </div>
     ),
