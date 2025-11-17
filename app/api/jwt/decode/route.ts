@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { decodeJWT, getJWTInfo } from '@/lib/utils/jwt';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const { token } = await request.json();

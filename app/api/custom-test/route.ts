@@ -3,6 +3,9 @@ import { safeRequest } from '@/lib/utils/http-client';
 import { redactObjectSecrets } from '@/lib/security/redaction';
 import { CustomTestRequest } from '@/lib/types';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const body: CustomTestRequest = await request.json();

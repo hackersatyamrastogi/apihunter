@@ -8,6 +8,9 @@ import {
   PROVIDER_CATEGORIES,
 } from '@/lib/providers/registry';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const category = searchParams.get('category');

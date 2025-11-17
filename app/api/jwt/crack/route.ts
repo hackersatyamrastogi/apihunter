@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { crackJWT } from '@/lib/utils/jwt';
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 // Common weak secrets for JWT cracking
 const COMMON_SECRETS = [
   'secret',

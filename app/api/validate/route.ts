@@ -4,6 +4,9 @@ import { getProvider } from '@/lib/providers/registry';
 import { createSecretFingerprint } from '@/lib/security/redaction';
 import { ValidationRequest } from '@/lib/types';
 
+// Force dynamic rendering - don't pre-render at build time
+export const dynamic = 'force-dynamic';
+
 export async function POST(request: NextRequest) {
   try {
     const body: ValidationRequest = await request.json();
