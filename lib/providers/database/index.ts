@@ -94,7 +94,7 @@ export const mongodbProvider: ProviderDefinition = {
           'Accept': 'application/json',
         },
         auth: {
-          username: credentials.api_key,
+          username: credentials.api_key as string,
           password: '',
         },
       });

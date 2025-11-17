@@ -75,12 +75,12 @@ export default function HomePage() {
             <div className="flex gap-4 justify-center flex-wrap">
               <Link href="/validate">
                 <Button size="lg" variant="primary">
-                  > SCAN KEYS
+                  {'>'} SCAN KEYS
                 </Button>
               </Link>
               <Link href="/providers">
                 <Button size="lg" variant="secondary">
-                  > BROWSE PROVIDERS
+                  {'>'} BROWSE PROVIDERS
                 </Button>
               </Link>
             </div>
