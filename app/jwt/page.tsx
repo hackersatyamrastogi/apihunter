@@ -587,7 +587,7 @@ export default function JWTToolPage() {
                     className="accent-terminal-green"
                   />
                   <label htmlFor="useCommon" className="text-terminal-green cursor-pointer">
-                    Use common weak secrets wordlist (~40 entries)
+                    Use common weak secrets wordlist (4000 entries)
                   </label>
                 </div>
 
