@@ -166,9 +166,11 @@ export default function HistoryPage() {
                     <div className="col-span-2 text-right">
                       <button
                         onClick={() => setExpandedId(expandedId === validation.id ? null : validation.id)}
-                        className="inline-flex items-center gap-2 text-terminal-green hover:text-terminal-cyan hover:underline text-sm font-mono uppercase"
+                        aria-expanded={expandedId === validation.id}
+                        aria-controls={`details-${validation.id}`}
+                        className="inline-flex items-center gap-2 text-terminal-green hover:text-terminal-cyan hover:underline text-sm font-mono uppercase min-h-[44px] px-2"
                       >
-                        {expandedId === validation.id ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                        {expandedId === validation.id ? <ChevronUp size={16} aria-hidden="true" /> : <ChevronDown size={16} aria-hidden="true" />}
                         Details
                       </button>
                     </div>
@@ -199,9 +201,11 @@ export default function HistoryPage() {
                       </div>
                       <button
                         onClick={() => setExpandedId(expandedId === validation.id ? null : validation.id)}
-                        className="text-terminal-green hover:text-terminal-cyan hover:underline text-sm flex items-center gap-1 font-mono uppercase"
+                        aria-expanded={expandedId === validation.id}
+                        aria-controls={`details-${validation.id}`}
+                        className="text-terminal-green hover:text-terminal-cyan hover:underline text-sm flex items-center gap-1 font-mono uppercase min-h-[44px] py-2"
                       >
-                        {expandedId === validation.id ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+                        {expandedId === validation.id ? <ChevronUp size={16} aria-hidden="true" /> : <ChevronDown size={16} aria-hidden="true" />}
                         {expandedId === validation.id ? 'Hide' : 'Show'} Details
                       </button>
                     </CardBody>
@@ -209,7 +213,7 @@ export default function HistoryPage() {
 
                   {/* Expanded Details */}
                   {expandedId === validation.id && (
-                    <Card className="mt-2 border-terminal-cyan">
+                    <Card className="mt-2 border-terminal-cyan" id={`details-${validation.id}`}>
                       <CardBody className="space-y-4">
                         {validation.errorSummary && (
                           <div className="border-l-4 border-terminal-red pl-4">
@@ -276,27 +280,29 @@ export default function HistoryPage() {
             </div>
 
             {/* Pagination */}
-            <div className="flex justify-between items-center mt-8 px-4">
-              <div className="text-sm text-terminal-cyan font-mono">
+            <nav aria-label="Pagination" className="flex flex-col sm:flex-row justify-between items-center gap-4 mt-8 px-4">
+              <div className="text-sm text-terminal-cyan font-mono" aria-live="polite">
                 [{offset + 1}...{offset + validations.length} of {pagination.total}]
               </div>
               <div className="flex gap-2">
                 <button
                   onClick={() => setOffset(Math.max(0, offset - limit))}
                   disabled={offset === 0}
-                  className="px-4 py-2 bg-surface-secondary hover:bg-terminal-green hover:text-black disabled:opacity-30 text-terminal-green rounded transition-colors font-mono uppercase"
+                  aria-label="Go to previous page"
+                  className="px-4 py-3 min-h-[44px] bg-surface-secondary hover:bg-terminal-green hover:text-black disabled:opacity-30 text-terminal-green rounded transition-colors font-mono uppercase"
                 >
                   {'<'} Previous
                 </button>
                 <button
                   onClick={() => setOffset(offset + limit)}
                   disabled={!pagination.hasMore}
-                  className="px-4 py-2 bg-surface-secondary hover:bg-terminal-green hover:text-black disabled:opacity-30 text-terminal-green rounded transition-colors font-mono uppercase"
+                  aria-label="Go to next page"
+                  className="px-4 py-3 min-h-[44px] bg-surface-secondary hover:bg-terminal-green hover:text-black disabled:opacity-30 text-terminal-green rounded transition-colors font-mono uppercase"
                 >
                   Next {'>'}
                 </button>
               </div>
-            </div>
+            </nav>
           </>
         )}
       </div>

@@ -150,45 +150,57 @@ export default function JWTToolPage() {
         </p>
 
         {/* Tabs */}
-        <div className="flex gap-2 mb-6">
+        <div className="flex flex-col sm:flex-row gap-2 mb-6" role="tablist" aria-label="JWT tools">
           <button
+            role="tab"
+            aria-selected={activeTab === 'decode'}
+            aria-controls="decode-panel"
+            id="decode-tab"
             onClick={() => setActiveTab('decode')}
-            className={`px-6 py-3 font-semibold uppercase tracking-wider transition-all flex items-center gap-2 ${
+            className={`px-4 sm:px-6 py-3 min-h-[48px] font-semibold uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
               activeTab === 'decode'
                 ? 'bg-terminal-green text-background-primary'
                 : 'bg-surface-primary text-terminal-green border border-terminal-green hover:bg-surface-secondary'
             }`}
           >
-            <Key size={18} />
-            Decode & Analyze
+            <Key size={18} aria-hidden="true" />
+            <span className="hidden xs:inline sm:hidden md:inline">Decode &</span> Analyze
           </button>
           <button
+            role="tab"
+            aria-selected={activeTab === 'edit'}
+            aria-controls="edit-panel"
+            id="edit-tab"
             onClick={() => setActiveTab('edit')}
-            className={`px-6 py-3 font-semibold uppercase tracking-wider transition-all flex items-center gap-2 ${
+            className={`px-4 sm:px-6 py-3 min-h-[48px] font-semibold uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
               activeTab === 'edit'
                 ? 'bg-terminal-cyan text-background-primary'
                 : 'bg-surface-primary text-terminal-cyan border border-terminal-cyan hover:bg-surface-secondary'
             }`}
           >
-            <Edit size={18} />
-            Edit & Sign
+            <Edit size={18} aria-hidden="true" />
+            <span className="hidden xs:inline sm:hidden md:inline">Edit &</span> Sign
           </button>
           <button
+            role="tab"
+            aria-selected={activeTab === 'crack'}
+            aria-controls="crack-panel"
+            id="crack-tab"
             onClick={() => setActiveTab('crack')}
-            className={`px-6 py-3 font-semibold uppercase tracking-wider transition-all flex items-center gap-2 ${
+            className={`px-4 sm:px-6 py-3 min-h-[48px] font-semibold uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
               activeTab === 'crack'
                 ? 'bg-terminal-yellow text-background-primary'
                 : 'bg-surface-primary text-terminal-yellow border border-terminal-yellow hover:bg-surface-secondary'
             }`}
           >
-            <Zap size={18} />
-            Crack Secret
+            <Zap size={18} aria-hidden="true" />
+            Crack <span className="hidden sm:inline">Secret</span>
           </button>
         </div>
 
         {/* Decode Tab */}
         {activeTab === 'decode' && (
-          <div className="space-y-6">
+          <div className="space-y-6" role="tabpanel" id="decode-panel" aria-labelledby="decode-tab">
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
@@ -247,7 +259,7 @@ export default function JWTToolPage() {
             )}
 
             {decodedData && (
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
                 {/* Left Column */}
                 <div className="space-y-6">
                   {/* Status */}
@@ -433,7 +445,7 @@ export default function JWTToolPage() {
 
         {/* Edit Tab */}
         {activeTab === 'edit' && (
-          <div className="space-y-6">
+          <div className="space-y-6" role="tabpanel" id="edit-panel" aria-labelledby="edit-tab">
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
@@ -552,7 +564,7 @@ export default function JWTToolPage() {
 
         {/* Crack Tab */}
         {activeTab === 'crack' && (
-          <div className="space-y-6">
+          <div className="space-y-6" role="tabpanel" id="crack-panel" aria-labelledby="crack-tab">
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">

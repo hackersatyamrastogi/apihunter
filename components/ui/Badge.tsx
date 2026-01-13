@@ -4,12 +4,15 @@ import clsx from 'clsx';
 interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: 'default' | 'success' | 'warning' | 'error' | 'info';
   size?: 'sm' | 'md';
+  /** Set to true for status badges that represent dynamic state */
+  isStatus?: boolean;
   children: React.ReactNode;
 }
 
 export function Badge({
   variant = 'default',
   size = 'md',
+  isStatus = false,
   children,
   className,
   ...props
@@ -30,6 +33,7 @@ export function Badge({
   return (
     <span
       {...props}
+      role={isStatus ? 'status' : undefined}
       className={clsx(
         'inline-flex items-center rounded-full',
         variantStyles[variant],

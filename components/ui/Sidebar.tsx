@@ -23,7 +23,11 @@ export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-64 bg-white border-r border-border-primary flex flex-col h-screen fixed left-0 top-0 z-50 shadow-sm">
+    <aside
+      className="hidden lg:flex w-64 bg-white border-r border-border-primary flex-col h-screen fixed left-0 top-0 z-50 shadow-sm"
+      role="navigation"
+      aria-label="Main navigation"
+    >
       {/* Logo/Header */}
       <div className="p-6 border-b border-border-primary">
         <div className="flex items-center gap-3">
@@ -62,6 +66,7 @@ export default function Sidebar() {
               <Link
                 key={item.href}
                 href={item.href}
+                aria-current={isActive ? 'page' : undefined}
                 className={`
                   flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200
                   ${isActive
@@ -73,7 +78,7 @@ export default function Sidebar() {
                 <Icon className="w-5 h-5 flex-shrink-0" />
                 <span className="font-medium uppercase tracking-wide text-sm">{item.name}</span>
                 {isActive && (
-                  <span className="ml-auto text-terminal-cyan text-xs">{'>'}</span>
+                  <span className="ml-auto text-terminal-cyan text-xs" aria-hidden="true">{'>'}</span>
                 )}
               </Link>
             );

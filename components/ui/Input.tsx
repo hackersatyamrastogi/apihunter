@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 import clsx from 'clsx';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -17,7 +17,16 @@ export function Input({
   id,
   ...props
 }: InputProps) {
-  const inputId = id || label?.toLowerCase().replace(/\s+/g, '-');
+  const generatedId = useId();
+  const inputId = id || (label ? label.toLowerCase().replace(/\s+/g, '-') : generatedId);
+  const errorId = `${inputId}-error`;
+  const helperId = `${inputId}-helper`;
+
+  // Build aria-describedby based on what's present
+  const describedBy = [
+    error ? errorId : null,
+    helperText && !error ? helperId : null,
+  ].filter(Boolean).join(' ') || undefined;
 
   return (
     <div className={fullWidth ? 'w-full' : ''}>
@@ -32,8 +41,10 @@ export function Input({
       <input
         {...props}
         id={inputId}
+        aria-invalid={error ? 'true' : undefined}
+        aria-describedby={describedBy}
         className={clsx(
-          'w-full px-3 py-2 rounded border transition-colors duration-200',
+          'w-full px-3 py-2.5 rounded border transition-colors duration-200 min-h-[44px]',
           'bg-surface-primary text-text-primary placeholder-text-muted',
           'border-border-primary focus:outline-none focus:border-accent-primary focus:ring-1 focus:ring-accent-primary',
           error && 'border-accent-error focus:border-accent-error focus:ring-accent-error',
@@ -41,10 +52,14 @@ export function Input({
         )}
       />
       {error && (
-        <p className="text-accent-error text-sm mt-1">{error}</p>
+        <p id={errorId} className="text-accent-error text-sm mt-1" role="alert">
+          {error}
+        </p>
       )}
       {helperText && !error && (
-        <p className="text-text-muted text-sm mt-1">{helperText}</p>
+        <p id={helperId} className="text-text-muted text-sm mt-1">
+          {helperText}
+        </p>
       )}
     </div>
   );

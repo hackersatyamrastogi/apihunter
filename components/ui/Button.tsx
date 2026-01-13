@@ -5,6 +5,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'danger' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
+  loadingText?: string;
   children: React.ReactNode;
 }
 
@@ -12,12 +13,13 @@ export function Button({
   variant = 'primary',
   size = 'md',
   isLoading = false,
+  loadingText,
   disabled = false,
   className,
   children,
   ...props
 }: ButtonProps) {
-  const baseStyles = 'font-medium rounded transition-colors duration-200 flex items-center justify-center gap-2';
+  const baseStyles = 'font-medium rounded transition-colors duration-200 flex items-center justify-center gap-2 min-h-[44px]';
 
   const variantStyles = {
     primary: 'bg-accent-primary hover:bg-blue-600 text-white disabled:bg-accent-primary disabled:opacity-50',
@@ -27,8 +29,8 @@ export function Button({
   };
 
   const sizeStyles = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-4 py-2 text-base',
+    sm: 'px-3 py-2 text-sm',
+    md: 'px-4 py-2.5 text-base',
     lg: 'px-6 py-3 text-lg',
   };
 
@@ -36,6 +38,8 @@ export function Button({
     <button
       {...props}
       disabled={disabled || isLoading}
+      aria-busy={isLoading}
+      aria-disabled={disabled || isLoading}
       className={clsx(
         baseStyles,
         variantStyles[variant],
@@ -49,6 +53,7 @@ export function Button({
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
+          aria-hidden="true"
         >
           <circle
             className="opacity-25"
@@ -65,7 +70,8 @@ export function Button({
           />
         </svg>
       )}
-      {children}
+      {isLoading && loadingText ? loadingText : children}
+      {isLoading && <span className="sr-only">Loading</span>}
     </button>
   );
 }

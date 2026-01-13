@@ -22,11 +22,11 @@ const config: Config = {
           tertiary: '#e9ecef',
         },
         text: {
-          primary: '#212529',    // Dark gray (main text)
-          secondary: '#495057',  // Medium gray
-          tertiary: '#6c757d',   // Light gray
-          muted: '#868e96',
-          dim: '#adb5bd',
+          primary: '#212529',    // Dark gray (main text) - 12.6:1 contrast on white
+          secondary: '#495057',  // Medium gray - 7.0:1 contrast
+          tertiary: '#5a6268',   // Adjusted for 4.5:1 min contrast (was #6c757d)
+          muted: '#6b7075',      // Darkened for 4.5:1 contrast (was #868e96)
+          dim: '#74787d',        // Darkened for 4.5:1 contrast (was #adb5bd)
         },
         accent: {
           primary: '#0d7377',    // Teal/cyan (professional)

@@ -118,9 +118,9 @@ export default function ValidatePage() {
           <h1 className="text-3xl font-bold text-terminal-green uppercase tracking-wider">Key Validation Scan</h1>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Left Sidebar - Provider Selection */}
-          <div className="lg:col-span-1">
+          <div className="md:col-span-2 lg:col-span-1">
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">
@@ -131,13 +131,14 @@ export default function ValidatePage() {
               <CardBody className="space-y-4">
                 {/* Search */}
                 <div className="relative">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-text-muted" size={18} />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-text-muted" size={18} aria-hidden="true" />
                   <input
                     type="text"
                     placeholder="Search providers..."
+                    aria-label="Search providers"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-3 py-2 bg-surface-secondary border border-terminal-green rounded text-terminal-green placeholder-text-dim focus:outline-none focus:border-terminal-cyan focus:shadow-lg focus:shadow-terminal-cyan/50"
+                    className="w-full pl-10 pr-3 py-2.5 min-h-[44px] bg-surface-secondary border border-terminal-green rounded text-terminal-green placeholder-text-dim focus:outline-none focus:border-terminal-cyan focus:shadow-lg focus:shadow-terminal-cyan/50"
                   />
                 </div>
 
@@ -156,21 +157,23 @@ export default function ValidatePage() {
                 />
 
                 {/* Provider List */}
-                <div className="space-y-2 max-h-96 overflow-y-auto">
+                <div className="space-y-2 max-h-96 overflow-y-auto" role="listbox" aria-label="Available providers">
                   {providersLoading ? (
-                    <p className="text-text-muted text-sm">Loading providers...</p>
+                    <p className="text-text-muted text-sm" aria-live="polite">Loading providers...</p>
                   ) : filteredProviders.length === 0 ? (
-                    <p className="text-text-muted text-sm">No providers found</p>
+                    <p className="text-text-muted text-sm" aria-live="polite">No providers found</p>
                   ) : (
                     filteredProviders.map((provider: ProviderDefinition) => (
                       <button
                         key={provider.id}
+                        role="option"
+                        aria-selected={selectedProviderId === provider.id}
                         onClick={() => {
                           setSelectedProviderId(provider.id);
                           setValidationResult(null);
                           setCredentials({});
                         }}
-                        className={`w-full text-left px-3 py-2 rounded transition-all ${
+                        className={`w-full text-left px-3 py-3 min-h-[48px] rounded transition-all ${
                           selectedProviderId === provider.id
                             ? 'bg-terminal-green bg-opacity-10 text-terminal-green border-l-2 border-terminal-green'
                             : 'hover:bg-surface-secondary hover:border-l-2 hover:border-terminal-cyan text-terminal-cyan'
@@ -203,7 +206,7 @@ export default function ValidatePage() {
           </div>
 
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="md:col-span-2 space-y-6">
             {/* Credentials Form */}
             {selectedProvider && (
               <Card>
@@ -235,9 +238,9 @@ export default function ValidatePage() {
                       id="storeInHistory"
                       checked={storeInHistory}
                       onChange={(e) => setStoreInHistory(e.target.checked)}
-                      className="w-4 h-4 rounded cursor-pointer accent-terminal-green"
+                      className="w-5 h-5 min-w-[20px] rounded cursor-pointer accent-terminal-green"
                     />
-                    <label htmlFor="storeInHistory" className="cursor-pointer text-terminal-green text-sm uppercase">
+                    <label htmlFor="storeInHistory" className="cursor-pointer text-terminal-green text-sm uppercase min-h-[44px] flex items-center">
                       [save to history]
                     </label>
                   </div>

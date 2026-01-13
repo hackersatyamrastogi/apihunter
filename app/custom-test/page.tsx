@@ -108,9 +108,9 @@ export default function CustomTestPage() {
           Test custom HTTP endpoints with optional credential injection
         </p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {/* Left Panel - Request Configuration */}
-          <div className="lg:col-span-2 space-y-6">
+          <div className="md:col-span-2 lg:col-span-2 space-y-6">
             {/* URL and Method */}
             <Card>
               <CardHeader>
@@ -167,15 +167,17 @@ export default function CustomTestPage() {
                   <p className="text-text-muted text-sm">No headers added yet</p>
                 ) : (
                   headers.map((header, index) => (
-                    <div key={index} className="flex gap-2 items-end">
+                    <div key={index} className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-end">
                       <Input
                         placeholder="Header name"
+                        aria-label={`Header ${index + 1} name`}
                         value={header.key}
                         onChange={(e) => handleUpdateHeader(index, 'key', e.target.value)}
                         className="flex-1"
                       />
                       <Input
                         placeholder="Header value"
+                        aria-label={`Header ${index + 1} value`}
                         value={header.value}
                         onChange={(e) => handleUpdateHeader(index, 'value', e.target.value)}
                         className="flex-1"
@@ -184,8 +186,10 @@ export default function CustomTestPage() {
                         variant="danger"
                         size="sm"
                         onClick={() => handleRemoveHeader(index)}
+                        aria-label={`Remove header ${index + 1}`}
+                        className="self-end sm:self-auto"
                       >
-                        <Trash2 size={16} />
+                        <Trash2 size={16} aria-hidden="true" />
                       </Button>
                     </div>
                   ))
@@ -215,7 +219,7 @@ export default function CustomTestPage() {
           </div>
 
           {/* Right Panel - Credential Injection */}
-          <div className="space-y-6">
+          <div className="md:col-span-2 lg:col-span-1 space-y-6">
             <Card>
               <CardHeader>
                 <div className="flex items-center gap-2">

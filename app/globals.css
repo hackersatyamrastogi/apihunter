@@ -202,3 +202,99 @@
   background: rgba(13, 115, 119, 0.2);
   color: #212529;
 }
+
+/* ============================================
+   ACCESSIBILITY ENHANCEMENTS
+   ============================================ */
+
+/* Touch target minimum sizes (WCAG 2.5.5 Target Size) */
+@layer utilities {
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Enhanced focus styles for keyboard navigation */
+@layer base {
+  /* Focus visible - only show focus ring for keyboard navigation */
+  :focus-visible {
+    @apply outline-none ring-2 ring-terminal-cyan ring-offset-2 ring-offset-background-primary;
+  }
+
+  /* Remove default focus outline (we're using ring instead) */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+
+  /* High contrast focus for form elements */
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    @apply border-terminal-cyan ring-2 ring-terminal-cyan ring-offset-0;
+  }
+
+  /* Ensure buttons have adequate touch targets */
+  button,
+  [role="button"],
+  a {
+    /* Use padding to achieve touch target without affecting layout too much */
+    position: relative;
+  }
+}
+
+/* Screen reader only utility (for announcements and skip links) */
+@layer utilities {
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .not-sr-only {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .scanline::after,
+  .flicker {
+    animation: none !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --terminal-cyan: #007a7e;
+    --terminal-green: #007a00;
+  }
+
+  .badge,
+  .btn {
+    border-width: 2px;
+  }
+}

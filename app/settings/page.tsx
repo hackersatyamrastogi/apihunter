@@ -69,17 +69,17 @@ export default function SettingsPage() {
             </div>
           </CardHeader>
           <CardBody className="space-y-4 border-t border-terminal-green pt-4">
-            <div className="flex items-start gap-4">
-              <div className="flex items-center gap-3 flex-1">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+              <div className="flex items-start gap-3 flex-1">
                 <input
                   type="checkbox"
                   id="historyEnabled"
                   checked={historyEnabled}
                   onChange={(e) => setHistoryEnabled(e.target.checked)}
-                  className="w-4 h-4 rounded cursor-pointer accent-terminal-green"
+                  className="w-5 h-5 min-w-[20px] mt-0.5 rounded cursor-pointer accent-terminal-green"
                 />
                 <div>
-                  <label htmlFor="historyEnabled" className="block text-terminal-green font-medium cursor-pointer uppercase">
+                  <label htmlFor="historyEnabled" className="block text-terminal-green font-medium cursor-pointer uppercase min-h-[44px] flex items-center">
                     Enable History
                   </label>
                   <p className="text-terminal-cyan text-sm mt-1">
@@ -89,7 +89,7 @@ export default function SettingsPage() {
                 </div>
               </div>
               {historyEnabled && (
-                <Badge variant="success" size="sm" className="badge-valid uppercase">
+                <Badge variant="success" size="sm" className="badge-valid uppercase self-start" isStatus>
                   [enabled]
                 </Badge>
               )}
@@ -125,33 +125,34 @@ export default function SettingsPage() {
             </div>
           </CardHeader>
           <CardBody className="space-y-4 border-t border-terminal-green pt-4">
-            <div className="flex items-start gap-4">
-              <div className="flex items-center gap-3 flex-1">
+            <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+              <div className="flex items-start gap-3 flex-1">
                 <input
                   type="checkbox"
                   id="encryptionEnabled"
                   checked={encryptionEnabled}
                   onChange={(e) => setEncryptionEnabled(e.target.checked)}
-                  className="w-4 h-4 rounded cursor-pointer accent-terminal-green"
+                  className="w-5 h-5 min-w-[20px] mt-0.5 rounded cursor-pointer accent-terminal-green disabled:opacity-50"
                   disabled={!historyEnabled}
+                  aria-describedby="encryption-help"
                 />
                 <div>
                   <label
                     htmlFor="encryptionEnabled"
-                    className={`block font-medium cursor-pointer uppercase ${
+                    className={`block font-medium cursor-pointer uppercase min-h-[44px] flex items-center ${
                       !historyEnabled ? 'text-text-muted' : 'text-terminal-green'
                     }`}
                   >
                     Enable Encryption
                   </label>
-                  <p className="text-terminal-cyan text-sm mt-1">
+                  <p id="encryption-help" className="text-terminal-cyan text-sm mt-1">
                     Use client-side encryption for API keys and sensitive metadata. Requires history storage to be
                     enabled.
                   </p>
                 </div>
               </div>
               {encryptionEnabled && (
-                <Badge variant="success" size="sm" className="badge-valid uppercase">
+                <Badge variant="success" size="sm" className="badge-valid uppercase self-start" isStatus>
                   [enabled]
                 </Badge>
               )}
